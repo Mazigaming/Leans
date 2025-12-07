@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Apply to LEANS Guild</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-0: #000000;
+      --accent-1: #502F4C;
+      --accent-2: #70587C;
+      --accent-3: #C8B8DB;
+      --accent-4: #F9F4F5;
+      --radius: 14px;
+      --transition: 200ms cubic-bezier(.2,.9,.3,1);
+    }
+
+    * { box-sizing:border-box; margin:0; padding:0; }
+    html, body { height:100%; scroll-behavior:smooth; }
+
+    body {
+      background: linear-gradient(180deg, var(--bg-0) 0%, #0a0610 100%);
+      background-attachment: fixed;
+      color: var(--accent-4);
+      font-family:'Montserrat',system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial;
+      overflow-y:auto;
+      line-height:1.5;
+    }
+
+    .wrap {
+      width:100%;
+      max-width:880px;
+      margin:0 auto;
+      padding:clamp(24px,6vw,48px);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+    }
+
+    .logo {
+      font-weight:800;
+      font-size:clamp(42px,10vw,120px);
+      text-transform:uppercase;
+      background:linear-gradient(90deg,#502F4C 0%,#70587C 25%,#C8B8DB 60%,#F9F4F5 100%);
+      background-size:200% 100%;
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      animation:gradientSwoop 6s ease-in-out infinite;
+      filter:drop-shadow(0 8px 26px rgba(80,47,76,0.45));
+      text-align:center;
+    }
+
+    @keyframes gradientSwoop {
+      0%{background-position:0% 50%;}
+      50%{background-position:100% 50%;}
+      100%{background-position:0% 50%;}
+    }
+
+    .subtitle {
+      margin-top:8px;
+      color:var(--accent-3);
+      font-weight:300;
+      letter-spacing:0.06em;
+      font-size:clamp(12px,1.6vw,18px);
+      text-align:center;
+    }
+
+    .form-container {
+      margin-top:48px;
+      width:100%;
+      background:rgba(255,255,255,0.04);
+      border-radius:var(--radius);
+      backdrop-filter:blur(8px);
+      box-shadow:0 4px 24px rgba(0,0,0,0.45);
+      border:1px solid rgba(255,255,255,0.06);
+      padding:clamp(24px,4vw,40px);
+      text-align:left;
+      transition:opacity 0.8s ease;
+    }
+
+    .form-container h2 {
+      color:var(--accent-4);
+      font-weight:600;
+      margin-bottom:24px;
+      text-align:center;
+      text-transform:uppercase;
+      letter-spacing:0.08em;
+    }
+
+    form { display:flex;flex-direction:column;gap:26px; }
+
+    .form-group { display:flex;flex-direction:column;gap:8px; }
+    label { font-weight:600;color:var(--accent-3);font-size:15px;letter-spacing:0.04em; }
+    small { font-weight:300;color:rgba(200,184,219,0.75);font-size:13px; }
+
+    input, textarea {
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.12);
+      border-radius:var(--radius);
+      padding:12px 14px;
+      color:var(--accent-4);
+      font-size:15px;
+      font-family:'Montserrat',sans-serif;
+      transition:border var(--transition), box-shadow var(--transition);
+    }
+
+    .input-small { max-width:260px; }
+
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button { -webkit-appearance:none; margin:0; }
+    input[type=number]{appearance:textfield;}
+    input:focus,textarea:focus{outline:none;border-color:rgba(200,184,219,0.35);box-shadow:0 0 8px rgba(200,184,219,0.25);}    
+    textarea.small{min-height:60px;}
+    textarea.medium{min-height:80px;}
+
+    .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 6px;
+    }
+
+    .checkbox-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: var(--accent-3);
+      cursor: pointer;
+    }
+
+    .sub-checkbox {
+      position: relative;
+      margin-left: 20px;
+      padding-left: 0px;
+      margin-top: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .sub-checkbox::before {
+      content: "";
+      position: absolute;
+      left: -14px;
+      top: -4px;
+      width: 14px;
+      height: 22px;
+      border-left: 2px solid rgba(200,184,219,0.12);
+      border-bottom: 2px solid rgba(200,184,219,0.12);
+      border-radius: 0 0 0 8px;
+    }
+
+    input[type=checkbox] {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--accent-2);
+      cursor: pointer;
+    }
+
+    .optional-header {
+      margin-top:28px;
+      text-align:center;
+      color:var(--accent-3);
+      font-weight:600;
+      font-size:16px;
+      letter-spacing:0.05em;
+    }
+
+    .controls {
+      margin-top:clamp(36px,5vw,56px);
+      display:flex;
+      justify-content:center;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+
+    .btn {
+      --btn-h:56px;
+      height:var(--btn-h);
+      min-width:180px;
+      padding:0 26px;
+      border-radius:999px;
+      border:2px solid transparent;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      font-weight:600;
+      font-size:15px;
+      text-decoration:none;
+      cursor:pointer;
+      transition:all var(--transition);
+      backdrop-filter:blur(6px);
+      box-shadow:0 6px 20px rgba(0,0,0,0.6),inset 0 -1px 0 rgba(255,255,255,0.02);
+    }
+
+    .btn-submit {
+      background:linear-gradient(180deg,var(--accent-2),var(--accent-1));
+      color:var(--accent-4);
+    }
+
+    .btn-submit[disabled] { opacity:0.6; cursor:not-allowed; }
+
+    .btn-submit:hover {
+      transform:translateY(-4px) scale(1.02);
+      box-shadow:0 10px 30px rgba(80,47,76,0.6);
+    }
+
+    .btn-back {
+      background:transparent;
+      color:var(--accent-3);
+      border:2px solid rgba(112,88,124,0.16);
+    }
+
+    .btn-back:hover {
+      transform:translateY(-3px);
+      border-color:rgba(200,184,219,0.28);
+      color:var(--accent-4);
+    }
+
+    .status-msg {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 15px;
+      color: var(--accent-3);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .status-msg.show { opacity: 1; }
+
+    .thank-you {
+      display:none;
+      text-align:center;
+      opacity:0;
+      transform:translateY(20px);
+      transition:all 0.8s ease;
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:var(--radius);
+      box-shadow:0 4px 24px rgba(0,0,0,0.45);
+      padding:60px 40px;
+      backdrop-filter:blur(10px);
+    }
+
+    .thank-you.show {
+      display:block;
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    .thank-you h2 {
+      color:var(--accent-4);
+      font-size:24px;
+      margin-bottom:12px;
+    }
+
+    .thank-you p {
+      font-size:15px;
+      color:var(--accent-3);
+      line-height:1.6;
+      margin-bottom:28px;
+    }
+
+    @media (max-width:540px){
+      .form-container{padding:24px}
+      .controls{flex-direction:column}
+      .btn{width:100%}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <h1 class="logo">Apply</h1>
+    <div class="subtitle">Join the ranks of LEANS — elite endgame guild</div>
+
+    <div class="form-container">
+      <h2>LEANS – Application Form</h2>
+
+      <!-- note: field names uzywa snake_case dla parsingu; dungeons[] zbiera pare wartosci -->
+      <form id="leansForm" action="https://formspree.io/f/mqarlvbv" method="POST" novalidate>
+        <div class="form-group">
+          <label for="ign">1. In-game Name (IGN)</label>
+          <small id="ign-help">What is your Realm of the Mad God username?</small>
+          <input id="ign" type="text" name="ign" class="input-small" required aria-describedby="ign-help">
+        </div>
+
+        <div class="form-group">
+          <label for="alive_fame">2. Alive Fame</label>
+          <small id="alive-help">How much alive fame does your main character currently have?</small>
+          <input id="alive_fame" type="number" name="alive_fame" class="input-small" min="0" step="1" required aria-describedby="alive-help">
+        </div>
+
+        <div class="form-group">
+          <label for="exalts">3. Exaltations</label>
+          <small id="exalts-help">Total exalts (out of 720 max)</small>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <input id="exalts" type="number" name="exalts" min="0" max="720" class="input-small" required aria-describedby="exalts-help"> <span>/ 720</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>4. Endgame Experience</label>
+          <small>Which endgame dungeons can you reliably complete without dying? (select at least one)</small>
+          <div class="checkbox-group" role="group" aria-label="Endgame dungeons">
+            <label class="checkbox-item"><input type="checkbox" id="d_mv" name="dungeons[]" value="MV"> <span for="d_mv">MV</span></label>
+            <div class="sub-checkbox">
+              <label class="checkbox-item"><input type="checkbox" id="d_trueumi" name="dungeons[]" value="True Umi"> <span for="d_trueumi">True Umi</span></label>
+            </div>
+
+            <label class="checkbox-item"><input type="checkbox" id="d_shat" name="dungeons[]" value="Shatters"> <span for="d_shat">Shatters</span></label>
+            <div class="sub-checkbox">
+              <label class="checkbox-item"><input type="checkbox" id="d_shat_hm" name="dungeons[]" value="Shatters HM"> <span for="d_shat_hm">HM</span></label>
+            </div>
+
+            <label class="checkbox-item"><input type="checkbox" id="d_o3" name="dungeons[]" value="O3"> <span for="d_o3">O3</span></label>
+            <label class="checkbox-item"><input type="checkbox" id="d_kog" name="dungeons[]" value="Advanced Kogbold"> <span for="d_kog">Advanced Kogbold</span></label>
+            <label class="checkbox-item"><input type="checkbox" id="d_plag" name="dungeons[]" value="Plagued Nest"> <span for="d_plag">Plagued Nest</span></label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="realmeye_url">5. RealmEye Profile</label>
+          <small id="re_help">Paste your RealmEye link (e.g. https://www.realmeye.com/player/YourNick).</small>
+          <input id="realmeye_url" type="url" name="realmeye_url" required aria-describedby="re_help">
+        </div>
+
+        <div class="form-group">
+          <label for="discord_tag">6. Discord name</label>
+          <small id="disc_help">Your Discord username (e.g. Name#1234).</small>
+          <input id="discord_tag" type="text" name="discord_tag" required aria-describedby="disc_help">
+        </div>
+
+        <div class="form-group">
+          <label for="mechanics_knowledge">7. Mechanics Knowledge Check</label>
+          <small id="mech_help">Name 3 mechanics in MV or Shatters HM that commonly kill inexperienced players.</small>
+          <textarea id="mechanics_knowledge" name="mechanics_knowledge" class="medium" required aria-describedby="mech_help"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="motivation">8. Motivation</label>
+          <small id="mot_help">Why do you want to join LEANS instead of another guild?</small>
+          <textarea id="motivation" name="motivation" class="small" required aria-describedby="mot_help"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="expectations">9. Expectations</label>
+          <small id="exp_help">What do you expect from a high-req guild, and what can you contribute to the team?</small>
+          <textarea id="expectations" name="expectations" class="small" required aria-describedby="exp_help"></textarea>
+        </div>
+
+        <div class="optional-header">⭐ Optional (but recommended)</div>
+
+        <div class="form-group">
+          <label for="death_history">10. Death History</label>
+          <small id="death_help">What was your most recent meaningful death and what did you learn from it?</small>
+          <textarea id="death_history" name="death_history" class="medium" aria-describedby="death_help"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="availability">11. Availability</label>
+          <small id="avail_help">When are you usually active (EU / NA time, hours per day/week)?</small>
+          <textarea id="availability" name="availability" class="small input-small" aria-describedby="avail_help"></textarea>
+        </div>
+
+        <!-- Honeypot dla spamu-->
+        <div style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">
+          <label for="hp">Leave this field empty</label>
+          <input id="hp" name="hp" type="text" autocomplete="off" tabindex="-1" />
+        </div>
+
+        <div class="controls">
+          <button type="button" class="btn btn-back" onclick="location.href='index.html'">← Back</button>
+          <button type="submit" class="btn btn-submit">Submit Application</button>
+        </div>
+
+        <p id="form-status" class="status-msg" aria-live="polite"></p>
+      </form>
+    </div>
+
+    <!-- TY -->
+    <div id="thank-you" class="thank-you">
+      <h2>✅ Application Sent!</h2>
+      <p>Thank you for applying to <strong>LEANS</strong> guild.<br><br>
+      We’ll review your application shortly and reach out if you’re a match.</p>
+      <button class="btn btn-back" onclick="location.href='index.html'">← Back to Home</button>
+    </div>
+
+    <p style="margin-top:18px;font-size:12px;color:rgba(200,184,219,0.7);text-align:center;max-width:660px;">By submitting you agree that basic application data (IGN, RealmEye, Discord) may be stored for recruitment purposes. We do not share your personal data with third parties except for guild administration.</p>
+
+  </div>
+
+  <script>
+    const form = document.getElementById("leansForm");
+    const status = document.getElementById("form-status");
+    const thankYou = document.getElementById("thank-you");
+    const formContainer = document.querySelector(".form-container");
+    const submitBtn = form.querySelector('button[type="submit"]');
+
+    function showStatus(text, isError = true) {
+      status.textContent = text;
+      status.style.color = isError ? "#ff8c8c" : "#9fe69f";
+      status.classList.add("show");
+      status.scrollIntoView({behavior:"smooth", block:"center"});
+    }
+
+    function validateRealmEyeURL(value) {
+      try {
+        const url = new URL(value);
+        // allow realmeye z lub bez www, basic sanity check
+        return /realmeye/.test(url.hostname.toLowerCase());
+      } catch (e) {
+        return false;
+      }
+    }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      submitBtn.disabled = true;
+
+      // basic check
+      const requiredFields = Array.from(form.querySelectorAll("[required]") );
+      for (const field of requiredFields) {
+        if (!field.value || !field.value.toString().trim()) {
+          field.focus();
+          showStatus("⚠️ Please fill out all required fields before submitting.");
+          submitBtn.disabled = false;
+          return;
+        }
+      }
+
+      // RealmEye URL check
+      const realmEyeInput = form.querySelector('input[name="realmeye_url"]');
+      if (!validateRealmEyeURL(realmEyeInput.value)) {
+        realmEyeInput.focus();
+        showStatus("⚠️ Provide a valid RealmEye URL (e.g. https://www.realmeye.com/player/YourNick).");
+        submitBtn.disabled = false;
+        return;
+      }
+
+      // min1dung
+      const dungeonCheckboxes = form.querySelectorAll('input[name="dungeons[]"]');
+      const anyDungeon = Array.from(dungeonCheckboxes).some(cb => cb.checked);
+      if (!anyDungeon) {
+        showStatus("⚠️ Select at least one endgame dungeon you can reliably complete.");
+        submitBtn.disabled = false;
+        return;
+      }
+
+      // honeypot spam check
+      const honeypot = form.querySelector('input[name="hp"]');
+      if (honeypot && honeypot.value) {
+        // detected bot/spam — silently abort
+        submitBtn.disabled = false;
+        return;
+      }
+
+      const data = new FormData(form);
+      try {
+        showStatus("⏳ Sending application...", false);
+        const response = await fetch(form.action, {
+          method: form.method,
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          formContainer.style.opacity = "0";
+          setTimeout(() => {
+            formContainer.style.display = "none";
+            thankYou.classList.add("show");
+            form.reset();
+            submitBtn.disabled = false;
+          }, 800);
+        } else {
+          showStatus("❌ Something went wrong. Try again later.");
+          submitBtn.disabled = false;
+        }
+      } catch (error) {
+        console.error(error);
+        showStatus("❌ Connection error. Please try again.");
+        submitBtn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>

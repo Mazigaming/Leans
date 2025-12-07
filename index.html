@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>LEANS — Guild Landing</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-0: #000000;
+      --accent-1: #502F4C;
+      --accent-2: #70587C;
+      --accent-3: #C8B8DB;
+      --accent-4: #F9F4F5;
+      --radius: 14px;
+      --transition: 200ms cubic-bezier(.2,.9,.3,1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+
+    body {
+      background: linear-gradient(180deg, var(--bg-0) 0%, #0a0610 60%);
+      color: var(--accent-4);
+      font-family: 'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: 1100px;
+      padding: clamp(24px,6vw,48px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 80vh;
+    }
+
+    .logo {
+      position: relative;
+      display: inline-block;
+      font-weight: 800;
+      font-size: clamp(48px,12vw,140px);
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      line-height: 1;
+      background: linear-gradient(
+        90deg,
+        #502F4C 0%,
+        #70587C 25%,
+        #C8B8DB 60%,
+        #F9F4F5 100%
+      );
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      filter: drop-shadow(0 8px 26px rgba(80,47,76,0.45));
+      text-shadow: 0 2px 0 rgba(0,0,0,0.12), 0 12px 30px rgba(80,47,76,0.18);
+      animation: gradientSwoop 6s ease-in-out infinite;
+      will-change: background-position, filter;
+    }
+
+    @keyframes gradientSwoop {
+      0% {
+        background-position: 0% 50%;
+        filter: drop-shadow(0 8px 24px rgba(80,47,76,0.45));
+      }
+      50% {
+        background-position: 100% 50%;
+        filter: drop-shadow(0 8px 36px rgba(200,184,219,0.6));
+      }
+      100% {
+        background-position: 0% 50%;
+        filter: drop-shadow(0 8px 24px rgba(80,47,76,0.45));
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .logo { animation: none; background-position: 50% 50%; filter: none; }
+    }
+
+    .subtitle {
+      margin-top: 8px;
+      color: var(--accent-3);
+      opacity: 0.95;
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      font-size: clamp(12px,1.6vw,18px);
+    }
+
+    .controls {
+      margin-top: clamp(40px,5vw,56px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .btn {
+      --btn-h: 66px;
+      height: var(--btn-h);
+      min-width: 220px;
+      padding: 0 32px;
+      border-radius: 999px;
+      border: 2px solid transparent;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all var(--transition);
+      backdrop-filter: blur(6px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.6), inset 0 -1px 0 rgba(255,255,255,0.02);
+    }
+
+    .btn-apply {
+      background: linear-gradient(180deg, var(--accent-2), var(--accent-1));
+      color: var(--accent-4);
+      border-color: rgba(255,255,255,0.04);
+    }
+
+    .btn-apply:hover {
+      transform: translateY(-4px) scale(1.04);
+      box-shadow: 0 12px 36px rgba(80,47,76,0.6);
+    }
+
+    .btn a {
+      all: unset;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      color: inherit;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .btn a:focus,
+    .btn a:hover,
+    .btn a:visited,
+    .btn a:active {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .stats {
+      margin-top: 60px;
+      display: flex;
+      gap: 34px;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .stat-box {
+      background: rgba(255,255,255,0.04);
+      padding: 20px 28px;
+      border-radius: var(--radius);
+      backdrop-filter: blur(6px);
+      box-shadow: 0 4px 18px rgba(0,0,0,0.45);
+      border: 1px solid rgba(255,255,255,0.06);
+      text-align: center;
+      min-width: 120px;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: var(--accent-3);
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+    }
+
+    .stat-value {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--accent-4);
+      text-shadow: 0 0 10px rgba(80,47,76,0.55);
+      height: 32px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+      min-height: 32px;
+    }
+
+    .slot-reel {
+      display: none;
+      flex-direction: column;
+      line-height: 1;
+      width: 100%;
+      will-change: transform;
+      backface-visibility: hidden;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .stat-value.spinning-initial .slot-reel,
+    .stat-value.spinning-update .slot-reel {
+      display: flex;
+    }
+
+    .stat-final-value {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+    }
+
+    .stat-value.spinning-initial .stat-final-value,
+    .stat-value.spinning-update .stat-final-value {
+      display: none;
+    }
+
+    .slot-item {
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      width: 100%;
+    }
+
+    @keyframes slotInitial {
+      0% { 
+        transform: translateY(0) translateZ(0);
+        filter: blur(8px) brightness(0.7);
+        text-shadow: 0 0 15px rgba(80,47,76,0.8), 0 0 25px rgba(200,184,219,0.4);
+        opacity: 1;
+      }
+      2% { 
+        transform: translateY(-32px) translateZ(0);
+        filter: blur(8px) brightness(0.7);
+      }
+      25% { 
+        filter: blur(7px) brightness(0.75);
+      }
+      50% { 
+        filter: blur(6px) brightness(0.8);
+      }
+      75% { 
+        filter: blur(3px) brightness(0.95);
+      }
+      90% { 
+        filter: blur(1px) brightness(1);
+      }
+      98% { 
+        transform: translateY(var(--final-offset)) translateZ(0);
+        filter: blur(0.3px) brightness(1);
+      }
+      100% { 
+        transform: translateY(var(--final-offset)) translateZ(0);
+        filter: blur(0px) brightness(1);
+        text-shadow: 0 0 10px rgba(80,47,76,0.55);
+        opacity: 1;
+      }
+    }
+
+    @keyframes slotUpdate {
+      0% { 
+        transform: translateY(0) translateZ(0);
+        filter: blur(6px) brightness(0.75);
+        text-shadow: 0 0 10px rgba(80,47,76,0.8), 0 0 15px rgba(200,184,219,0.3);
+        opacity: 1;
+      }
+      2% { 
+        transform: translateY(-32px) translateZ(0);
+        filter: blur(6px) brightness(0.75);
+      }
+      40% { 
+        filter: blur(4px) brightness(0.9);
+      }
+      80% { 
+        filter: blur(1px) brightness(1);
+      }
+      95% { 
+        transform: translateY(var(--final-offset)) translateZ(0);
+        filter: blur(0.3px) brightness(1);
+      }
+      100% { 
+        transform: translateY(var(--final-offset)) translateZ(0);
+        filter: blur(0px) brightness(1);
+        text-shadow: 0 0 10px rgba(80,47,76,0.55);
+        opacity: 1;
+      }
+    }
+
+    .stat-value.spinning-initial .slot-reel {
+      animation: slotInitial 1.5s cubic-bezier(0.25, 0.1, 0.5, 1) 1 forwards !important;
+    }
+
+    .stat-value.spinning-update .slot-reel {
+      animation: slotUpdate 0.8s cubic-bezier(0.25, 0.1, 0.5, 1) 1 forwards !important;
+    }
+
+    .foot {
+      margin-top: 28px;
+      font-size: 12px;
+      color: rgba(200,184,219,0.7);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <h1 class="logo"><span>LΞΛNS</span></h1>
+    <div class="subtitle">Elite RotMG guild — MV • HM Shatts • High requirements</div>
+
+    <div class="controls" role="navigation" aria-label="Primary actions">
+      <button class="btn btn-apply" aria-label="Apply to Leans" onclick="location.href='questionnaire.html'">Apply</button>
+    </div>
+
+    <div class="foot">LEANS • Built for endgame players • Minimal requirements enforced</div>
+
+    <div class="stats">
+      <div class="stat-box">
+         <div class="stat-label">Members</div>
+         <div class="stat-value" id="kpi-members" data-value=""></div>
+       </div>
+       <div class="stat-box">
+         <div class="stat-label">Total Fame</div>
+         <div class="stat-value" id="kpi-fame" data-value=""></div>
+       </div>
+       <div class="stat-box">
+         <div class="stat-label">World Rank</div>
+         <div class="stat-value" id="kpi-rank" data-value=""></div>
+       </div>
+    </div>
+  </div>
+
+  <script>
+    let isInitialLoad = true;
+
+    function spinValue(element, newValue, isInitial = false) {
+      const oldValue = element.getAttribute('data-value');
+      
+      if (!isInitial && oldValue === newValue) {
+        return;
+      }
+      
+      element.setAttribute('data-value', newValue);
+      
+      const numSpins = isInitial ? 50 : 15;
+      const items = [];
+      
+      for (let i = 0; i < numSpins; i++) {
+        items.push(newValue);
+      }
+      items.push(newValue);
+      
+      const html = '<div class="slot-reel">' + 
+        items.map(item => `<div class="slot-item">${item}</div>`).join('') + 
+        '</div>' +
+        `<div class="stat-final-value">${newValue}</div>`;
+      
+      element.classList.remove('spinning-initial', 'spinning-update');
+      element.innerHTML = html;
+      element.style.filter = 'none';
+      element.style.textShadow = 'none';
+      
+      void element.offsetWidth;
+      
+      const animClass = isInitial ? 'spinning-initial' : 'spinning-update';
+      const finalOffset = -(numSpins * 32);
+      element.style.setProperty('--final-offset', finalOffset + 'px');
+      element.classList.add(animClass);
+      
+      const handleAnimEnd = () => {
+        element.classList.remove('spinning-initial', 'spinning-update');
+        element.removeEventListener('animationend', handleAnimEnd);
+      };
+      
+      element.addEventListener('animationend', handleAnimEnd, { once: true });
+    }
+
+    async function updateGuildKPI() {
+      const elMembers = document.getElementById('kpi-members');
+      const elFame = document.getElementById('kpi-fame');
+      const elRank = document.getElementById('kpi-rank');
+
+      try {
+        const res = await fetch('./data/guild-stats.json', { cache: 'no-store' });
+        if (!res.ok) throw new Error('Fetch error');
+        const json = await res.json();
+
+        if (json.members) {
+          spinValue(elMembers, json.members.toString(), isInitialLoad);
+        }
+
+        if (json.totalAliveFrame) {
+          const fame = json.totalAliveFrame;
+          const fameText = fame >= 1e6 ? (fame / 1e6).toFixed(1) + 'M' : fame.toLocaleString();
+          spinValue(elFame, fameText, isInitialLoad);
+        }
+
+        if (json.worldRank) {
+          spinValue(elRank, '#' + json.worldRank, isInitialLoad);
+        }
+
+        isInitialLoad = false;
+      } catch (err) {
+        console.warn('Guild stats fetch failed:', err);
+      }
+    }
+
+    updateGuildKPI();
+    setInterval(updateGuildKPI, 5 * 60 * 1000);
+  </script>
+</body>
+</html>

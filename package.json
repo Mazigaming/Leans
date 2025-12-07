@@ -1,0 +1,12 @@
+{
+  "name": "leans-guild-page",
+  "version": "1.0.0",
+  "description": "LEANS Guild Landing Page with dynamic RealEye stats",
+  "type": "module",
+  "scripts": {
+    "scrape": "node scripts/scrape-realmeye.js"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  }
+}
